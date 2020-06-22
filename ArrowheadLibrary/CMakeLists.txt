@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.17)
+project(ArrowheadLibrary)
+
+set(CMAKE_CXX_STANDARD 14)
+
+SET(BUILD_SHARED_LIBS OFF)
+
+#option(CURL_STATICLIB "Set to ON to build libcurl with static linking."  ON)
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+
+add_library(ArrowheadLibrary STATIC ahlib.cpp ahlib.h ${CURL_LIBRARIES})
