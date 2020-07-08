@@ -1,0 +1,23 @@
+{
+  "orchestratorURL" : "https://10.35.127.242:8441/orchestrator/orchestration",
+  "serviceRegistryURL" : "",
+  "consumerID" : "PREMCompiler",
+  "requestForm": {
+    "orchestrationFlags": {
+      "overrideStore": true
+    },
+    "requestedService": {
+      "interfaceRequirements": [
+        "HTTP-INSECURE-JSON"
+      ],
+      "serviceDefinitionRequirement":
+      "PREMScheduler"
+    },
+    "requesterSystem":
+    {
+      "address": "10.35.127.242",
+      "port": 0,
+      "systemName": "PREMCompiler"
+    }
+  }
+}

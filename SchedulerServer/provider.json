@@ -1,0 +1,10 @@
+{
+  "serverAddressIPV4" : "10.35.127.242",
+  "serverAddressIPV6" : "[fe80::1a57:58d9:c43e:6319]",
+  "serverPort" : "4242",
+  "customURL" : "some-url",
+  "systemName" : "PREMScheduler",
+  "serviceDefinition" : "PREMScheduler",
+  "serviceInterface" : "HTTP-SECURE-JSON",
+  "serviceRegistryBaseURL" : "https://10.35.127.242:8443/serviceregistry/"
+}
