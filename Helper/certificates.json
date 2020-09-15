@@ -1,0 +1,6 @@
+{
+  "cacert" : "certificates/cacert.pem",
+  "clcert" : "certificates/clcert.pem",
+  "privkey" : "certificates/privkey.pem",
+  "privpass" : ".ZSe@gU)EDT^z55V"
+}

@@ -1,0 +1,9 @@
+{
+  "consumerAddress" : "10.35.127.242",
+  "consumerPublicCertificate" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjP2SgjRNG8248H8s+phqPPlgyHb9BakZHWtSAYeWWEfUkYHSmt5lFKCYpjAongC9WtEi++C1CBODzoE1dcJ1bd6LOazMi+e8K1PMvMxHV+Bakw1BVgFNiKUKy3sMFWARRFeN6ns5zx5Zv/lmtxqeHXKtkc+MG+uTnzgk797ZMinBhyxNIcf5wbZomMkJDIux5H0Yujmt9XfRr0m5iG8AhXGtrH4eOJG85YVqdkNHfSpS49Zd1KuppztWwQ+8U8usEMk15ih7P5bnC+MKO+QI5L2ZArBH6pZ75M7UDkS61CWNd9Ck8HB5KbNHUJQKnhhZVPUEowCXzQFH90FWQd4fmQIDAQAB",
+  "consumerPort" : 0,
+  "consumerName" : "PREMCompiler",
+  "providerInterfaceId" : 2,
+  "providerId" : 44,
+  "providerServiceDefinitionId" : 20
+}
