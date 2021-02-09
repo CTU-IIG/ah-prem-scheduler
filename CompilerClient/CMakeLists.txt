@@ -12,12 +12,13 @@ include_directories(${CURL_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIRS})
 
 include_directories(../ArrowheadLibrary)
-link_directories(../ArrowheadLibrary/cmake-build-debug)
+link_directories(../ArrowheadLibrary/build)
 
 add_executable(CompilerClient main.cpp)
 
-target_link_libraries(CompilerClient json-c)
-target_link_libraries(CompilerClient ${CURL_LIBRARIES})
 target_link_libraries(CompilerClient ${Boost_LIBRARIES})
 target_link_libraries(CompilerClient "${CMAKE_THREAD_LIBS_INIT}")
 target_link_libraries(CompilerClient ArrowheadLibrary)
+target_link_libraries(CompilerClient json-c)
+target_link_libraries(CompilerClient ${CURL_LIBRARIES})
+

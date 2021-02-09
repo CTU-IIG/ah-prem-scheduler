@@ -41,8 +41,8 @@ public:
     }
 
 private:
-    tcp_connection(boost::asio::io_service& io_service)
-            : socket_(io_service)
+    tcp_connection(boost::asio::io_context& io_context)
+            : socket_(io_context)
     {
     }
 
@@ -137,8 +137,8 @@ private:
 class tcp_server
 {
 public:
-    tcp_server(boost::asio::io_service& io_service)
-            : acceptor_(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 4242))
+    tcp_server(boost::asio::io_context& io_context)
+            : io_context_(io_context), acceptor_(io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 4242))
     {
         start_accept();
     }
@@ -148,7 +148,7 @@ private:
     {
         std::cout << "Accept" << std::endl;
         tcp_connection::pointer new_connection =
-                tcp_connection::create(acceptor_.get_io_service());
+                tcp_connection::create(io_context_);
 
         acceptor_.async_accept(new_connection->socket(),
                                boost::bind(&tcp_server::handle_accept, this, new_connection,
@@ -166,15 +166,16 @@ private:
         start_accept();
     }
 
+    boost::asio::io_context& io_context_;
     boost::asio::ip::tcp::acceptor acceptor_;
 };
 
 void tcpServer(int port){
     try
     {
-        boost::asio::io_service io_service;
-        tcp_server server(io_service);
-        io_service.run();
+        boost::asio::io_context io_context;
+        tcp_server server(io_context);
+        io_context.run();
     }
     catch (std::exception& e)
     {

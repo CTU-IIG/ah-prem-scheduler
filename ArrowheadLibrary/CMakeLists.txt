@@ -9,4 +9,4 @@ SET(BUILD_SHARED_LIBS OFF)
 find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIR})
 
-add_library(ArrowheadLibrary STATIC ahlib.cpp ahlib.h ${CURL_LIBRARIES})
+add_library(ArrowheadLibrary STATIC ahlib.cpp ahlib.h)
