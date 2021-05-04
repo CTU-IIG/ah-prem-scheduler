@@ -3,6 +3,7 @@
 **Does not use orchestrator for data exchange**
 
 This repository contains the following:
+
 * ArrowheadLibrary - C++ library for easier implementation of AH producers/consumers
 * SchedulerServer - Sample provider implentation - produces schedule: waits for file sent over TCP and generates something to be sent back (actually not only provider)
 * CompilerClient - Sample consumer implementation - consumes schedule: Sends file over TCP and waits for schedule (also not only consumer)
@@ -12,6 +13,7 @@ This repository contains the following:
 For both producer and consumer, you have to generate/reuse certificates with the same system name and certificate name. (e.g. you generate certificate with name "alois", then your consumer or producer has to have system name "alois")
 
 Steps in short:
+
 * Compile library, provider and consumer app
 * Edit config for provider. Run provider and get output of the registration process
 * Fill config for helper script, run helper to register the consumer system and to connect the consumer with the provider
@@ -21,6 +23,7 @@ Steps in short:
 ## AH library
 
 Build by using:
+
     mkdir build && cd build;
     cmake ..
     make
@@ -28,6 +31,7 @@ Build by using:
 ## Scheduler server
 
 Build by using:
+
     mkdir build && cd build;
     cmake ..
     make
@@ -37,12 +41,14 @@ Build by using:
 Before use, check certificates directory, update json files with configurations. File certificates.json contains paths to required certificates, producer.json contains information about the server (address, port) where the compiler client can send file to solve. System name has to be the same as the client certificate name.
 
 Run:
+
     cd ..
     build/SchedulerServer
 
 ## Compiler client
 
 Build by using:
+
     mkdir build && cd build;
     cmake ..
     make
