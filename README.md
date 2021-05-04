@@ -20,9 +20,6 @@ Steps in short:
 * Edit config for consumer, run consumer.
 * Everything works as expected :)
 
-## Setup AH Services
-
-See [core-java-spring README](https://github.com/arrowhead-f/core-java-spring/blob/master/README.md).
 
 ## AH library
 
@@ -78,3 +75,43 @@ Add into firefox/chromium custom certificate (sysop.p12). Then connect to the AH
 * https://10.35.127.242:8443 for service registry (to check if provider and consumer are registered correctly) - useful is GET /serviceregistry/mgmt and GET /serviceregistry/mgmt/systems
 * https://10.35.127.242:8445 for authorization system (to check if consumer can see the provider) - useful is GET /authorization/mgmt/intracloud
 
+## Other
+
+### Setup AH Services
+
+See [core-java-spring README](https://github.com/arrowhead-f/core-java-spring/blob/master/README.md).
+
+### Generate certificates
+
+Use [Certificate Generation](https://github.com/eclipse-arrowhead/core-java-spring/tree/master/scripts/certificate_generation) from the offical repo.
+
+In here, adjust names and IP addresses to match your setup. Basically, all you need to modify are `ip:[^,]*` and `[^"]*\.ltu\.arrowhead.eu`.
+
+Also, add your password to `lib_certs`.
+
+### Adjust configuration scripts
+
+Each system configuration script in folder `docker/core_system_config` of the `core-java-spring` repo has to be modified. (This does not hold for pure Java build, as in that case it has be probably specified prior to the build?).
+
+In here, you want to modify:
+
+* `server.address` to match IP of your server,
+* `domain.name` to match your IP,
+* `server.ssl.key-store` to match the certificate location,
+* `server.ssl.key-store-password` to match your secret certificate key store password,
+* `server.ssl.key-alias` to match service name (use full name, e.g., `service_registry.demo.ltu.arrowhead.eu`, because of [#250](https://github.com/eclipse-arrowhead/core-java-spring/issues/250),
+* `server.ssl.key-password` to match certificate password,
+* `server.ssl.trust-store` to match trust store certificate location, and
+* `server.ssl.trust-store-password` to match trust store password.
+
+### Adjust docker-compose configuration file (Docker only)
+
+In here, update `MYSQL_ROOT_PASSWORD` and add correct mapping of certificate files, e.g.:
+
+```
+volumes:
+  - ./<CERTIFICATE FOLDER>/authorization.p12:/authorization/authorization.p12
+  - ./<CERTIFICATE FOLDER>/truststore.p12:/authorization/truststore.p12
+```
+
+Note, that Service Registry is in folder `serviceregistry`, but the certificate is named `service_registry`.
