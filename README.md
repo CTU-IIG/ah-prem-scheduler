@@ -20,6 +20,10 @@ Steps in short:
 * Edit config for consumer, run consumer.
 * Everything works as expected :)
 
+## Setup AH Services
+
+See [core-java-spring README](https://github.com/arrowhead-f/core-java-spring/blob/master/README.md).
+
 ## AH library
 
 Build by using:
