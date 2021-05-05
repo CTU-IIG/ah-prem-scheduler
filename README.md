@@ -36,8 +36,6 @@ Build by using:
     mkdir build && cd build;
     cmake ..
     make
-    cd ..
-    build/SchedulerServer
 
 Before use, check certificates directory, update json files with configurations. File certificates.json contains paths to required certificates, producer.json contains information about the server (address, port) where the compiler client can send file to solve. System name has to be the same as the client certificate name.
 
@@ -45,6 +43,22 @@ Run:
 
     cd ..
     build/SchedulerServer
+    
+If producer registers successfully to the AH server, you should see similar lines like those in stdout:
+
+    "providerInterfaceId" : 7,
+    "providerId" : 42,
+    "providerServiceDefinitionId" : 24
+
+## Helper
+
+First, run provider (scheduler server) and check output of the command line. If everything works correctly, then you should get a few JSON lines that you can copy paste into helper script config.
+
+Update json configurations according to the consumer and provider and run. If you already registered consumer system, you can fill its id in python script, otherwise, the post request will fail.
+
+    python3 add_consumer_and_connect.py
+
+If you want to delete or modify records in AH database, you have to do it manually from web ui. (Shortly described later.) :(
 
 ## Compiler client
 
@@ -58,19 +72,9 @@ Build by using:
 
 Again, check json files with configurations. File consumer.json contains information about requested service (fill it according to your provider config). Client certificate name has to be the same as requester system name.
 
-## Helper
-
-First, run provider (scheduler server) and check output of the command line. If everything works correctly, then you should get a few JSON lines that you can copy paste into helper script config.
-
-Update json configurations according to the consumer and provider and run. If you already registered consumer system, you can fill its id in python script, otherwise, the post request will fail.
-
-    python3 add_consumer_and_connect.py
-
-If you want to delete or modify records in AH database, you have to do it manually from web ui. :(
-
 ## Web ui for checking state and progress
 
-Add into firefox/chromium custom certificate (sysop.p12). Then connect to the AH server:
+Add into firefox/chromium custom certificate (sysop.p12). Then connect to the AH server: (10.35.127.242 is IP of our AH server)
 
 * https://10.35.127.242:8443 for service registry (to check if provider and consumer are registered correctly) - useful is GET /serviceregistry/mgmt and GET /serviceregistry/mgmt/systems
 * https://10.35.127.242:8445 for authorization system (to check if consumer can see the provider) - useful is GET /authorization/mgmt/intracloud
