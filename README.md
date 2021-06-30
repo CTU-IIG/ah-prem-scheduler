@@ -93,6 +93,8 @@ In here, adjust names and IP addresses to match your setup. Basically, all you n
 
 Also, add your password to `lib_certs`.
 
+**Alternatively**, use `generate.sh` from folder `CertificateGeneration` in this repository.
+
 ### Adjust configuration scripts
 
 Each system configuration script in folder `docker/core_system_config` of the `core-java-spring` repo has to be modified. (This does not hold for pure Java build, as in that case it has be probably specified prior to the build?).
