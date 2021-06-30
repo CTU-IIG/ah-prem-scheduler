@@ -12,7 +12,7 @@ source "lib_certs.sh"
 # CLOUD
 
 if ! test -d ${FOLDER}; then
-    mkdir -r "$FOLDER"
+    mkdir -p "$FOLDER"
 fi
 
 if test $# -gt 0; then
@@ -41,19 +41,19 @@ fi
 
 
 ## 2) Generate truststore
-echo -n "Step 2: Truststore "
+#echo -n "Step 2: Truststore "
+#
+#if test -f "${FOLDER}truststore.p12"; then
+#    echo "FOUND";
+#else
+#    create_truststore \
+#        "${FOLDER}truststore.p12" "root.crt" "arrowhead.eu"
+#    echo "GENERATED";
+#fi
 
-if test -f "${FOLDER}truststore.p12"; then
-    echo "FOUND";
-else
-    create_truststore \
-        "${FOLDER}truststore.p12" "root.crt" "arrowhead.eu"
-    echo "GENERATED";
-fi
 
-
-## 3) Generate cloud keystore
-echo -n "Step 3: Cloud keystore "
+## 2) Generate cloud keystore
+echo -n "Step 2: Cloud keystore "
 
 if test -f "${FOLDER}${CLOUD}.p12"; then
     echo "FOUND";
@@ -65,8 +65,8 @@ else
 fi
 
 
-## 4) Generate system certificate
-echo -n "Step 4: System certificates "
+## 3) Generate system certificate
+echo -n "Step 3: System certificates "
 
 while test $# -gt 0; do
     SYSTEM=$1
@@ -84,8 +84,9 @@ while test $# -gt 0; do
     shift
 done
 
-## 5) Generate sysop certificate
-echo -n "Step 5: Sysop certificate "
+
+## 4) Generate sysop certificate
+echo -n "Step 4: Sysop certificate "
 
 if test -f "${FOLDER}sysop.p12"; then
     echo "FOUND";
@@ -97,3 +98,16 @@ else
     echo "GENERATED";
 fi
 
+
+## 5) Generate cloud truststore
+echo -n "Step 5: Cloud truststore "
+
+if test -f "${FOLDER}truststore.p12"; then
+    echo "FOUND";
+else
+    create_truststore \
+        "${FOLDER}truststore.p12" \
+        "${FOLDER}${CLOUD}.crt" "${CLOUD}.${DOMAIN}.arrowhead.eu" \
+        "root.crt" "arrowhead.eu"
+    echo "GENERATED";
+fi
