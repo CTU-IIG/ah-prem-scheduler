@@ -1,0 +1,4 @@
+[submodule "CertificateGeneration"]
+	path = CertificateGeneration
+	url = https://github.com/CTU-IIG/ah-certgen
+	branch = master
