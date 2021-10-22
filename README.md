@@ -93,7 +93,42 @@ In here, adjust names and IP addresses to match your setup. Basically, all you n
 
 Also, add your password to `lib_certs`.
 
-**Alternatively**, use `generate.sh` from folder `CertificateGeneration` in this repository.
+#### CertificateGeneration
+
+Using `generate.sh` from folder `CertificateGeneration` in this repository.
+
+```
+cd CertificateGeneration
+wget https://raw.githubusercontent.com/eclipse-arrowhead/core-java-spring/master/certificates/master.crt
+wget https://raw.githubusercontent.com/eclipse-arrowhead/core-java-spring/master/certificates/master.p12
+
+## Create variables.sh
+cat <<EOF > variables.sh
+#!/bin/bash
+
+export MASTER_PASSWORD="123456"
+export PASSWORD="PASSWORD"
+export DOMAIN="ctu"
+export CLOUD="prem"
+export FOLDER="./certificates/"
+EOF
+
+## PREMCompiler
+## Update SAN to match the computer (append name and IP)
+SAN="dns:localhost,ip:127.0.0.1" bash generate.sh -a PREMCompiler
+
+mkdir -p ../CompilerClient/certificates
+mv ./certificates/PREMCompiler* ../CompilerClient/certificates/
+
+## PREMScheduler
+## Update SAN to match the computer (append name and IP)
+SAN="dns:localhost,ip:127.0.0.1" bash generate.sh -a PREMScheduler
+
+mkdir -p ../SchedulerServer/certificates
+mv ./certificates/PREMScheduler* ../SchedulerServer/certificates/
+
+cd ..
+```
 
 ### Adjust configuration scripts
 
