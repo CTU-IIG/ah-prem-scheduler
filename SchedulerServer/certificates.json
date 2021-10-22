@@ -1,6 +1,6 @@
 {
-  "cacert" : "certificates/cacert.pem",
-  "clcert" : "certificates/clcert.pem",
-  "privkey" : "certificates/privkey.pem",
+  "cacert" : "certificates/PREMScheduler.cacert.pem",
+  "clcert" : "certificates/PREMScheduler.clcert.pem",
+  "privkey" : "certificates/PREMScheduler.privkey.pem",
   "privpass" : ".ZSe@gU)EDT^z55V"
 }
